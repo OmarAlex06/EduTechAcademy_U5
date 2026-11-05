@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  calidad:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      # 1) análisis estático
+      - run: ruff check .
+      # 2) pruebas y cobertura mínima
+      - run: python -m pytest --cov=src --cov-branch --cov-fail-under=80
