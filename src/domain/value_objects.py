@@ -12,7 +12,7 @@ class Calificacion:
             raise ValueError("La calificación debe estar entre 0 y 100")
     
     def aprueba(self) -> bool:
-        return self.valor >= 75
+        return self.valor >= 70
 
 @dataclass(frozen=True)
 class PorcentajeAsistencia:
